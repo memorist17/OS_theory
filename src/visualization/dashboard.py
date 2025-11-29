@@ -4,12 +4,12 @@ from pathlib import Path
 from typing import Any
 
 import dash
+import networkx as nx
 import numpy as np
 import pandas as pd
-import plotly.express as px
 import plotly.graph_objects as go
 import yaml
-from dash import Input, Output, State, callback, dcc, html
+from dash import dcc, html
 from plotly.subplots import make_subplots
 
 
@@ -59,6 +59,24 @@ def load_results(results_dir: Path) -> dict[str, Any]:
     if perc_stats_path.exists():
         with open(perc_stats_path) as f:
             results["percolation_stats"] = yaml.safe_load(f)
+
+    # Load raster data and network from data directory
+    if "config" in results:
+        config = results["config"]
+        data_dir = Path(config.get("data_dir", ""))
+        if data_dir.exists():
+            # Load raster images
+            buildings_path = data_dir / "buildings_binary.npy"
+            roads_path = data_dir / "roads_weighted.npy"
+            if buildings_path.exists():
+                results["buildings_raster"] = np.load(buildings_path)
+            if roads_path.exists():
+                results["roads_raster"] = np.load(roads_path)
+            
+            # Load network graph
+            network_path = data_dir / "network.graphml"
+            if network_path.exists():
+                results["network_path"] = network_path
 
     return results
 
@@ -312,6 +330,165 @@ def create_percolation_figure(results: dict[str, Any]) -> go.Figure:
     return fig
 
 
+def create_raster_image_figure(results: dict[str, Any]) -> go.Figure | None:
+    """Create figure showing buildings and roads raster."""
+    if "buildings_raster" not in results and "roads_raster" not in results:
+        return None
+    
+    fig = make_subplots(
+        rows=1, cols=2,
+        subplot_titles=("Buildings (Binary)", "Roads (Weighted)"),
+        horizontal_spacing=0.1,
+    )
+    
+    # Buildings raster
+    if "buildings_raster" in results:
+        buildings = results["buildings_raster"]
+        fig.add_trace(
+            go.Heatmap(
+                z=buildings,
+                colorscale="gray",
+                showscale=False,
+                name="Buildings",
+            ),
+            row=1, col=1
+        )
+    
+    # Roads raster
+    if "roads_raster" in results:
+        roads = results["roads_raster"]
+        fig.add_trace(
+            go.Heatmap(
+                z=roads,
+                colorscale="viridis",
+                showscale=True,
+                name="Roads",
+            ),
+            row=1, col=2
+        )
+    
+    fig.update_layout(
+        height=500,
+        template="plotly_dark",
+        paper_bgcolor="#1a1a2e",
+        plot_bgcolor="#16213e",
+        font=dict(family="Noto Sans JP, sans-serif", color="#eee"),
+        showlegend=False,
+    )
+    
+    fig.update_xaxes(title_text="X [px]", row=1, col=1, gridcolor="#2a2a4e")
+    fig.update_yaxes(title_text="Y [px]", row=1, col=1, gridcolor="#2a2a4e")
+    fig.update_xaxes(title_text="X [px]", row=1, col=2, gridcolor="#2a2a4e")
+    fig.update_yaxes(title_text="Y [px]", row=1, col=2, gridcolor="#2a2a4e")
+    
+    return fig
+
+
+def create_network_figure(results: dict[str, Any]) -> go.Figure | None:
+    """Create figure showing network graph visualization."""
+    if "network_path" not in results:
+        return None
+    
+    try:
+        network_path = Path(results["network_path"])
+        if not network_path.exists():
+            return None
+            
+        G = nx.read_graphml(str(network_path))
+        
+        if G.number_of_nodes() == 0:
+            return None
+        
+        # For large networks, sample nodes for visualization
+        max_nodes = 5000
+        if G.number_of_nodes() > max_nodes:
+            # Sample nodes while preserving connectivity
+            import random
+            nodes_to_keep = random.sample(list(G.nodes()), max_nodes)
+            G = G.subgraph(nodes_to_keep).copy()
+        
+        # Use spring layout for positioning (fewer iterations for speed)
+        pos = nx.spring_layout(G, k=0.1, iterations=30, seed=42)
+        
+        # Extract node positions
+        node_x = [pos[node][0] for node in G.nodes()]
+        node_y = [pos[node][1] for node in G.nodes()]
+        
+        # Extract edge coordinates
+        edge_x = []
+        edge_y = []
+        for edge in G.edges():
+            x0, y0 = pos[edge[0]]
+            x1, y1 = pos[edge[1]]
+            edge_x.extend([x0, x1, None])
+            edge_y.extend([y0, y1, None])
+        
+        # Create figure
+        fig = go.Figure()
+        
+        # Add edges
+        fig.add_trace(go.Scatter(
+            x=edge_x, y=edge_y,
+            line=dict(width=0.5, color="#888"),
+            hoverinfo='none',
+            mode='lines',
+            name="Edges"
+        ))
+        
+        # Add nodes
+        node_info = []
+        for node in G.nodes():
+            node_data = G.nodes[node]
+            node_type = node_data.get('type', 'unknown')
+            info = f"Node: {node}<br>Type: {node_type}"
+            if 'x' in node_data and 'y' in node_data:
+                info += f"<br>Coords: ({node_data['x']:.1f}, {node_data['y']:.1f})"
+            node_info.append(info)
+        
+        fig.add_trace(go.Scatter(
+            x=node_x, y=node_y,
+            mode='markers',
+            name="Nodes",
+            marker=dict(
+                size=3,
+                color="#4ECDC4",
+                line=dict(width=0.5, color="#fff")
+            ),
+            text=node_info,
+            hoverinfo='text'
+        ))
+        
+        fig.update_layout(
+            title="Network Graph Visualization",
+            showlegend=False,
+            hovermode='closest',
+            margin=dict(b=20, l=5, r=5, t=40),
+            annotations=[
+                dict(
+                    text=f"Nodes: {G.number_of_nodes()}, Edges: {G.number_of_edges()}",
+                    showarrow=False,
+                    xref="paper", yref="paper",
+                    x=0.005, y=-0.002,
+                    xanchor='left', yanchor='bottom',
+                    font=dict(color="#888", size=12)
+                )
+            ],
+            xaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            yaxis=dict(showgrid=False, zeroline=False, showticklabels=False),
+            template="plotly_dark",
+            paper_bgcolor="#1a1a2e",
+            plot_bgcolor="#16213e",
+            font=dict(family="Noto Sans JP, sans-serif", color="#eee"),
+            height=600,
+        )
+        
+        return fig
+        
+    except Exception as e:
+        print(f"Error creating network figure: {e}")
+        return None
+
+
 def create_summary_card(results: dict[str, Any]) -> html.Div:
     """Create summary statistics card."""
     cards = []
@@ -319,11 +496,17 @@ def create_summary_card(results: dict[str, Any]) -> html.Div:
     # Config info
     if "config" in results:
         config = results["config"]
+        site_metadata = config.get('site_metadata', {})
+        site_id = site_metadata.get('meta_info', {}).get('site_id', 'N/A')
+        if site_id == 'N/A':
+            # Fallback to direct site_metadata
+            site_id = site_metadata.get('site_id', 'N/A')
+        
         cards.append(
             html.Div([
                 html.H4("📍 Analysis Info", style={"color": "#4ECDC4"}),
                 html.P(f"Run ID: {config.get('run_id', 'N/A')}"),
-                html.P(f"Site: {config.get('site_metadata', {}).get('site_id', 'N/A')}"),
+                html.P(f"Site: {site_id}"),
                 html.P(f"Timestamp: {config.get('timestamp', 'N/A')[:19]}"),
             ], className="summary-card")
         )
@@ -476,45 +659,76 @@ def create_dashboard(results_dir: Path | str) -> dash.Dash:
 
     run_id = results.get("config", {}).get("run_id", results_dir.name)
 
-    app.layout = html.Div([
+    # Build layout sections
+    layout_sections = [
+        html.H1("🏙️ Urban Structure Analysis"),
+        html.P(f"Run: {run_id}", className="subtitle"),
+        create_summary_card(results),
+    ]
+    
+    # Add raster images section if available
+    raster_fig = create_raster_image_figure(results)
+    if raster_fig:
+        layout_sections.append(
+            html.Div([
+                html.H2("Raster Data Visualization"),
+                dcc.Graph(
+                    id="raster-images",
+                    figure=raster_fig,
+                    config={"displayModeBar": True, "scrollZoom": True},
+                ),
+            ], className="section")
+        )
+    
+    # Add network visualization section if available
+    network_fig = create_network_figure(results)
+    if network_fig:
+        layout_sections.append(
+            html.Div([
+                html.H2("Network Graph Visualization"),
+                dcc.Graph(
+                    id="network-graph",
+                    figure=network_fig,
+                    config={"displayModeBar": True, "scrollZoom": True},
+                ),
+            ], className="section")
+        )
+    
+    # Add analysis sections
+    layout_sections.extend([
+        # MFA Section
         html.Div([
-            html.H1("🏙️ Urban Structure Analysis"),
-            html.P(f"Run: {run_id}", className="subtitle"),
+            html.H2("Multifractal Analysis"),
+            dcc.Graph(
+                id="mfa-spectrum",
+                figure=create_mfa_figure(results),
+                config={"displayModeBar": True, "scrollZoom": True},
+            ),
+        ], className="section"),
 
-            # Summary cards
-            create_summary_card(results),
+        # Lacunarity Section
+        html.Div([
+            html.H2("Lacunarity Analysis"),
+            dcc.Graph(
+                id="lacunarity-curve",
+                figure=create_lacunarity_figure(results),
+                config={"displayModeBar": True, "scrollZoom": True},
+            ),
+        ], className="section"),
 
-            # MFA Section
-            html.Div([
-                html.H2("Multifractal Analysis"),
-                dcc.Graph(
-                    id="mfa-spectrum",
-                    figure=create_mfa_figure(results),
-                    config={"displayModeBar": True, "scrollZoom": True},
-                ),
-            ], className="section"),
+        # Percolation Section
+        html.Div([
+            html.H2("Percolation Analysis"),
+            dcc.Graph(
+                id="percolation-curve",
+                figure=create_percolation_figure(results),
+                config={"displayModeBar": True, "scrollZoom": True},
+            ),
+        ], className="section"),
+    ])
 
-            # Lacunarity Section
-            html.Div([
-                html.H2("Lacunarity Analysis"),
-                dcc.Graph(
-                    id="lacunarity-curve",
-                    figure=create_lacunarity_figure(results),
-                    config={"displayModeBar": True, "scrollZoom": True},
-                ),
-            ], className="section"),
-
-            # Percolation Section
-            html.Div([
-                html.H2("Percolation Analysis"),
-                dcc.Graph(
-                    id="percolation-curve",
-                    figure=create_percolation_figure(results),
-                    config={"displayModeBar": True, "scrollZoom": True},
-                ),
-            ], className="section"),
-
-        ], className="container"),
+    app.layout = html.Div([
+        html.Div(layout_sections, className="container"),
     ])
 
     return app
@@ -558,4 +772,4 @@ if __name__ == "__main__":
     else:
         app = create_dashboard(args.results_dir)
 
-    app.run_server(debug=args.debug, port=args.port)
+    app.run(debug=args.debug, port=args.port)

@@ -11,6 +11,9 @@ from shapely.geometry import LineString, Point
 from shapely.ops import linemerge, unary_union
 from tqdm import tqdm
 
+# NetworkX is always available (graph-tool not used in this version)
+GRAPH_TOOL_AVAILABLE = True
+
 
 @dataclass
 class NetworkBuilder:
@@ -192,3 +195,6 @@ class NetworkBuilder:
             "mean_edge_length": np.mean(lengths) if len(lengths) > 0 else 0,
             "max_edge_length": np.max(lengths) if len(lengths) > 0 else 0,
         }
+
+    # Alias for backwards compatibility
+    get_network_stats = compute_statistics

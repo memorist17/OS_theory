@@ -32,6 +32,11 @@ class AEQDTransformer:
         """Get the AEQD CRS."""
         return self._crs
 
+    @property
+    def crs_wkt(self) -> str:
+        """Get the CRS as WKT string."""
+        return self._crs.to_wkt()
+
     def transform_gdf(self, gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
         """
         Transform GeoDataFrame from WGS84 to local AEQD coordinates.
@@ -79,6 +84,35 @@ class AEQDTransformer:
             self.half_size_m,
             self.half_size_m,
         )
+
+    def get_canvas_bounds_wgs84(self) -> tuple[float, float, float, float]:
+        """
+        Get canvas bounds in WGS84 coordinates.
+
+        Returns:
+            (min_lon, min_lat, max_lon, max_lat)
+        """
+        # Transform corner points from local to WGS84
+        min_lon, min_lat = self._to_wgs84.transform(-self.half_size_m, -self.half_size_m)
+        max_lon, max_lat = self._to_wgs84.transform(self.half_size_m, self.half_size_m)
+
+        return (min_lon, min_lat, max_lon, max_lat)
+
+    def transform_and_clip(self, gdf: gpd.GeoDataFrame) -> gpd.GeoDataFrame:
+        """
+        Transform GeoDataFrame from WGS84 to local AEQD and clip to canvas.
+
+        Args:
+            gdf: GeoDataFrame in EPSG:4326
+
+        Returns:
+            Transformed and clipped GeoDataFrame
+        """
+        if len(gdf) == 0:
+            return gdf.set_crs(self._crs, allow_override=True)
+
+        transformed = self.transform_gdf(gdf)
+        return self.clip_to_canvas(transformed)
 
     def get_canvas_size_px(self, resolution_m: float = 1.0) -> int:
         """

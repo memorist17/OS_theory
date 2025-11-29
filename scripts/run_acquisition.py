@@ -21,6 +21,23 @@ from src.preprocessing.rasterizer import Rasterizer
 from src.projection.aeqd_transformer import AEQDTransformer
 
 
+def convert_to_native(obj):
+    """Convert numpy types to Python native types for YAML serialization."""
+    import numpy as np
+    if isinstance(obj, dict):
+        return {k: convert_to_native(v) for k, v in obj.items()}
+    elif isinstance(obj, (list, tuple)):
+        return [convert_to_native(item) for item in obj]
+    elif isinstance(obj, np.integer):
+        return int(obj)
+    elif isinstance(obj, np.floating):
+        return float(obj)
+    elif isinstance(obj, np.ndarray):
+        return obj.tolist()
+    else:
+        return obj
+
+
 def save_metadata(
     output_dir: Path,
     site_id: str,
@@ -31,6 +48,9 @@ def save_metadata(
     stats: dict,
 ) -> None:
     """Save metadata.yaml with processing details."""
+    # Convert numpy types to native Python types
+    stats = convert_to_native(stats)
+    
     metadata = {
         "meta_info": {
             "site_id": site_id,
@@ -142,7 +162,7 @@ def main():
     rasterizer = Rasterizer(
         canvas_size=canvas_size,
         resolution_m=config["canvas"]["resolution_m"],
-        bounds=transformer.get_canvas_bounds(),
+        half_size_m=config["canvas"]["half_size_m"],
     )
 
     buildings_raster = rasterizer.rasterize_buildings(buildings)
@@ -156,10 +176,10 @@ def main():
         print("\n[5/5] Building network graph...")
         builder = NetworkBuilder()
         graph = builder.build_network(roads, buildings)
-        builder.save(graph, output_dir / "network.gt")
+        builder.save(graph, output_dir / "network.graphml")
         stats["network"] = builder.get_network_stats(graph)
     else:
-        print("\n[5/5] Skipping network building (graph-tool not available)")
+        print("\n[5/5] Skipping network building")
         stats["network"] = {"status": "skipped"}
 
     # Save metadata
