@@ -1,10 +1,10 @@
-# Urban Structure Analysis System
+# Structure Analysis System
 
-都市構造解析システム - MFA/Lacunarity/Percolation統合解析
+構造解析システム - MFA/Lacunarity/Percolation統合解析
 
 ## 概要
 
-Overture Mapsから都市データを取得し、多重フラクタル解析（MFA）、ラクナリティ解析、パーコレーション解析を統一的に計算・可視化するシステム。
+Overture Mapsから構造データを取得し、多重フラクタル解析（MFA）、ラクナリティ解析、パーコレーション解析を統一的に計算・可視化するシステム。
 
 ## 機能
 
@@ -177,7 +177,7 @@ docker run -it -v $(pwd)/data:/app/data -v $(pwd)/outputs:/app/outputs urban-ana
 - duckdb >= 1.1.0
 - geopandas >= 0.14.0
 - rasterio >= 1.3.0
-- networkx >= 3.0
+- graph-tool >= 2.1.1
 - numpy >= 1.26.0
 - pandas >= 2.1.0
 - dash >= 2.14.0
