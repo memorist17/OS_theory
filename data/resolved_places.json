@@ -1,0 +1,274 @@
+[
+  {
+    "identifier": "tokyo_jp",
+    "display_name": "東京 (Japan)",
+    "latitude": 35.6895,
+    "longitude": 139.6917,
+    "source": "input",
+    "raw": {
+      "display_name": "東京 (Japan)",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 139.63646103248712,
+      "min_lat": 35.64443580842302,
+      "max_lon": 139.74693896751288,
+      "max_lat": 35.734563853529224
+    }
+  },
+  {
+    "identifier": "kawaba_jp",
+    "display_name": "群馬県川場村",
+    "latitude": 36.7,
+    "longitude": 139.101,
+    "source": "input",
+    "raw": {
+      "display_name": "群馬県川場村",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 139.0450466520468,
+      "min_lat": 36.65494343007707,
+      "max_lon": 139.1569533479532,
+      "max_lat": 36.74505622814566
+    }
+  },
+  {
+    "identifier": "tottori_jp",
+    "display_name": "鳥取市",
+    "latitude": 35.5011,
+    "longitude": 134.2351,
+    "source": "input",
+    "raw": {
+      "display_name": "鳥取市",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 134.17999032086811,
+      "min_lat": 35.456034397080515,
+      "max_lon": 134.29020967913186,
+      "max_lat": 35.54616526561402
+    }
+  },
+  {
+    "identifier": "pienza_it",
+    "display_name": "Pienza, Italy",
+    "latitude": 43.0786,
+    "longitude": 11.6784,
+    "source": "input",
+    "raw": {
+      "display_name": "Pienza, Italy",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 11.61700282259824,
+      "min_lat": 43.03359299974654,
+      "max_lon": 11.73979717740176,
+      "max_lat": 43.1236066449361
+    }
+  },
+  {
+    "identifier": "murray_hill_us",
+    "display_name": "Murray Hill, New Jersey, USA",
+    "latitude": 40.6971,
+    "longitude": -74.4026,
+    "source": "input",
+    "raw": {
+      "display_name": "Murray Hill, New Jersey, USA",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": -74.46175816585045,
+      "min_lat": 40.652074272733294,
+      "max_lon": -74.34344183414956,
+      "max_lat": 40.742125374962754
+    }
+  },
+  {
+    "identifier": "greenwich_uk",
+    "display_name": "Greenwich, London, UK",
+    "latitude": 51.4826,
+    "longitude": 0.0077,
+    "source": "input",
+    "raw": {
+      "display_name": "Greenwich, London, UK",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": -0.06427664455998336,
+      "min_lat": 51.43765903696705,
+      "max_lon": 0.07967664455998336,
+      "max_lat": 51.52754061667233
+    }
+  },
+  {
+    "identifier": "munzenberg_de",
+    "display_name": "Münzenberg, Germany",
+    "latitude": 50.45,
+    "longitude": 8.78,
+    "source": "input",
+    "raw": {
+      "display_name": "Münzenberg, Germany",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 8.709601599430902,
+      "min_lat": 50.405051045778926,
+      "max_lon": 8.850398400569096,
+      "max_lat": 50.494948605129046
+    }
+  },
+  {
+    "identifier": "poznan_pl",
+    "display_name": "Poznań, Poland",
+    "latitude": 52.41,
+    "longitude": 16.93,
+    "source": "input",
+    "raw": {
+      "display_name": "Poznań, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 16.85652336710228,
+      "min_lat": 52.365066157825936,
+      "max_lon": 17.00347663289772,
+      "max_lat": 52.45493349864846
+    }
+  },
+  {
+    "identifier": "krakow_pl",
+    "display_name": "Kraków, Poland",
+    "latitude": 50.06,
+    "longitude": 19.94,
+    "source": "input",
+    "raw": {
+      "display_name": "Kraków, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 19.870173943418337,
+      "min_lat": 50.015048012499825,
+      "max_lon": 20.009826056581666,
+      "max_lat": 50.104951637493876
+    }
+  },
+  {
+    "identifier": "wroclaw_pl",
+    "display_name": "Wrocław, Poland",
+    "latitude": 51.11,
+    "longitude": 17.03,
+    "source": "input",
+    "raw": {
+      "display_name": "Wrocław, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 16.958603643875232,
+      "min_lat": 51.06505616055541,
+      "max_lon": 17.10139635612477,
+      "max_lat": 51.15494349204651
+    }
+  },
+  {
+    "identifier": "lanckorona_pl",
+    "display_name": "Lanckorona, Poland",
+    "latitude": 49.85,
+    "longitude": 19.72,
+    "source": "input",
+    "raw": {
+      "display_name": "Lanckorona, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 19.650476951950278,
+      "min_lat": 49.80504637608874,
+      "max_lon": 19.78952304804972,
+      "max_lat": 49.89495327343941
+    }
+  },
+  {
+    "identifier": "lipnica_murowana_pl",
+    "display_name": "Lipnica Murowana, Poland",
+    "latitude": 49.86,
+    "longitude": 20.52,
+    "source": "input",
+    "raw": {
+      "display_name": "Lipnica Murowana, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 20.450462603962126,
+      "min_lat": 49.81504645406053,
+      "max_lon": 20.589537396037873,
+      "max_lat": 49.904953195489355
+    }
+  },
+  {
+    "identifier": "jelenia_gora_pl",
+    "display_name": "Jelenia Góra, Poland",
+    "latitude": 50.9,
+    "longitude": 15.74,
+    "source": "input",
+    "raw": {
+      "display_name": "Jelenia Góra, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 15.668925264840526,
+      "min_lat": 50.85505453576943,
+      "max_lon": 15.811074735159474,
+      "max_lat": 50.94494511627354
+    }
+  },
+  {
+    "identifier": "kakowa_wola_pl",
+    "display_name": "Kakowa Wola, Poland",
+    "latitude": 52.48,
+    "longitude": 19.46,
+    "source": "input",
+    "raw": {
+      "display_name": "Kakowa Wola, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 19.386406809913897,
+      "min_lat": 52.4350666929275,
+      "max_lon": 19.533593190086105,
+      "max_lat": 52.524932963775484
+    }
+  },
+  {
+    "identifier": "ruda_malenicza_pl",
+    "display_name": "Ruda Malenicka, Poland",
+    "latitude": 51.15,
+    "longitude": 20.19,
+    "source": "input",
+    "raw": {
+      "display_name": "Ruda Malenicka, Poland",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 20.11854194233779,
+      "min_lat": 51.10505646974778,
+      "max_lon": 20.261458057662214,
+      "max_lat": 51.1949431829627
+    }
+  },
+  {
+    "identifier": "tabor_cz",
+    "display_name": "Tabor, Czechia",
+    "latitude": 49.41,
+    "longitude": 14.66,
+    "source": "input",
+    "raw": {
+      "display_name": "Tabor, Czechia",
+      "metadata": {}
+    },
+    "bbox": {
+      "min_lon": 14.591100370851413,
+      "min_lat": 49.36504294083595,
+      "max_lon": 14.728899629148588,
+      "max_lat": 49.45495670777767
+    }
+  }
+]
