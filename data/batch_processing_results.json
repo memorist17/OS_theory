@@ -1,0 +1,162 @@
+[
+  {
+    "identifier": "tokyo_jp",
+    "display_name": "東京 (Japan)",
+    "latitude": 35.6895,
+    "longitude": 139.6917,
+    "site_id": "35.6895_139.6917",
+    "status": "skipped_existing",
+    "error": null,
+    "message": "Data already exists for 35.6895_139.6917"
+  },
+  {
+    "identifier": "kawaba_jp",
+    "display_name": "群馬県川場村",
+    "latitude": 36.7,
+    "longitude": 139.101,
+    "site_id": "36.7_139.101",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_200755_82a96177"
+  },
+  {
+    "identifier": "tottori_jp",
+    "display_name": "鳥取市",
+    "latitude": 35.5011,
+    "longitude": 134.2351,
+    "site_id": "35.5011_134.2351",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_201117_278242b7"
+  },
+  {
+    "identifier": "pienza_it",
+    "display_name": "Pienza, Italy",
+    "latitude": 43.0786,
+    "longitude": 11.6784,
+    "site_id": "43.0786_11.6784",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_201433_59262644"
+  },
+  {
+    "identifier": "murray_hill_us",
+    "display_name": "Murray Hill, New Jersey, USA",
+    "latitude": 40.6971,
+    "longitude": -74.4026,
+    "site_id": "40.6971_-74.4026",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_201741_bd6304df"
+  },
+  {
+    "identifier": "greenwich_uk",
+    "display_name": "Greenwich, London, UK",
+    "latitude": 51.4826,
+    "longitude": 0.0077,
+    "site_id": "51.4826_0.0077",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_202102_ab10171a"
+  },
+  {
+    "identifier": "munzenberg_de",
+    "display_name": "Münzenberg, Germany",
+    "latitude": 50.45,
+    "longitude": 8.78,
+    "site_id": "50.45_8.78",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_202425_a000a94a"
+  },
+  {
+    "identifier": "poznan_pl",
+    "display_name": "Poznań, Poland",
+    "latitude": 52.41,
+    "longitude": 16.93,
+    "site_id": "52.41_16.93",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_202736_7859d36a"
+  },
+  {
+    "identifier": "krakow_pl",
+    "display_name": "Kraków, Poland",
+    "latitude": 50.06,
+    "longitude": 19.94,
+    "site_id": "50.06_19.94",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_203103_57c3064c"
+  },
+  {
+    "identifier": "wroclaw_pl",
+    "display_name": "Wrocław, Poland",
+    "latitude": 51.11,
+    "longitude": 17.03,
+    "site_id": "51.11_17.03",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_203428_ed34f02d"
+  },
+  {
+    "identifier": "lanckorona_pl",
+    "display_name": "Lanckorona, Poland",
+    "latitude": 49.85,
+    "longitude": 19.72,
+    "site_id": "49.85_19.72",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_203750_dc752a19"
+  },
+  {
+    "identifier": "lipnica_murowana_pl",
+    "display_name": "Lipnica Murowana, Poland",
+    "latitude": 49.86,
+    "longitude": 20.52,
+    "site_id": "49.86_20.52",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_204104_953af066"
+  },
+  {
+    "identifier": "jelenia_gora_pl",
+    "display_name": "Jelenia Góra, Poland",
+    "latitude": 50.9,
+    "longitude": 15.74,
+    "site_id": "50.9_15.74",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_204420_5818d782"
+  },
+  {
+    "identifier": "kakowa_wola_pl",
+    "display_name": "Kakowa Wola, Poland",
+    "latitude": 52.48,
+    "longitude": 19.46,
+    "site_id": "52.48_19.46",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_204734_181baf2e"
+  },
+  {
+    "identifier": "ruda_malenicza_pl",
+    "display_name": "Ruda Malenicka, Poland",
+    "latitude": 51.15,
+    "longitude": 20.19,
+    "site_id": "51.15_20.19",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_205048_68426a41"
+  },
+  {
+    "identifier": "tabor_cz",
+    "display_name": "Tabor, Czechia",
+    "latitude": 49.41,
+    "longitude": 14.66,
+    "site_id": "49.41_14.66",
+    "status": "success",
+    "error": null,
+    "output_run_id": "run_20251128_205405_26cb960e"
+  }
+]
