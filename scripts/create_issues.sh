@@ -64,7 +64,11 @@ High
 
 ## ラベル
 enhancement, analysis, critical" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗（既に存在する可能性があります）"
+=======
+  --label "enhancement,analysis,critical" || echo "  ⚠️  作成失敗（既に存在する可能性があります）"
+>>>>>>> feat/full-implementation
 
 # Issue 2: 取得地点サンプルの選び方
 echo ""
@@ -91,7 +95,11 @@ High
 
 ## ラベル
 enhancement, data-acquisition, critical" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,data-acquisition,critical" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 3: 境界・取得範囲
 echo ""
@@ -117,7 +125,11 @@ High
 
 ## ラベル
 enhancement, data-acquisition, critical" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,data-acquisition,critical" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 4: 取得形状
 echo ""
@@ -143,7 +155,11 @@ High
 
 ## ラベル
 enhancement, data-acquisition, critical" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,data-acquisition,critical" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 5: NetworkX → graph-tool
 echo ""
@@ -170,7 +186,11 @@ Medium
 
 ## ラベル
 refactor, dependencies" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "refactor,dependencies" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 6: 道路ネットワークの線形補完
 echo ""
@@ -196,7 +216,11 @@ Medium
 
 ## ラベル
 bug, preprocessing" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "bug,preprocessing" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 7: ラスター画像の品質改善
 echo ""
@@ -222,7 +246,11 @@ Medium
 
 ## ラベル
 bug, preprocessing, visualization" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "bug,preprocessing,visualization" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 8: 3指標の妥当性検証
 echo ""
@@ -248,7 +276,11 @@ Medium
 
 ## ラベル
 enhancement, analysis, documentation" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,analysis,documentation" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 9: ダッシュボードの可視化改善
 echo ""
@@ -274,7 +306,11 @@ Medium
 
 ## ラベル
 enhancement, visualization" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,visualization" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 10: パーコレーション解析の距離計算ロジック
 echo ""
@@ -300,7 +336,11 @@ Medium
 
 ## ラベル
 bug, analysis, question" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "bug,analysis,question" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 11: ネットワーク形状と距離計算のスタンス
 echo ""
@@ -326,7 +366,11 @@ Medium
 
 ## ラベル
 enhancement, analysis, design" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,analysis,design" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 12: 3次元データの取得と解析
 echo ""
@@ -352,7 +396,11 @@ Low
 
 ## ラベル
 enhancement, feature, future" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,feature,future" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 13: ミクロスケール解析
 echo ""
@@ -373,7 +421,11 @@ Low
 
 ## ラベル
 enhancement, feature, future" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,feature,future" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 # Issue 14: マクロスケール解析
 echo ""
@@ -394,7 +446,11 @@ Low
 
 ## ラベル
 enhancement, feature, future" \
+<<<<<<< HEAD
   || echo "  ⚠️  作成失敗"
+=======
+  --label "enhancement,feature,future" || echo "  ⚠️  作成失敗"
+>>>>>>> feat/full-implementation
 
 echo ""
 echo -e "${GREEN}完了しました！${NC}"
