@@ -7,7 +7,9 @@
 Overture Mapsから構造データを取得し、多重フラクタル解析（MFA）、ラクナリティ解析、パーコレーション解析を統一的に計算・可視化するシステム。
 
 ## 実行結果（アルファ）
-<img width="2722" height="18238" alt="CleanShot 2025-12-01 at 14 01 21@2x" src="https://github.com/user-attachments/assets/0fdd2976-609b-459d-8398-a9b618d5079d" />
+<div style="max-height: 1000px; overflow-y: scroll; border: 1px solid #444; padding: 8px;">
+  <img src="https://github.com/user-attachments/assets/0fdd2976-609b-459d-8398-a9b618d5079d" width="100%">
+</div>
 
 
 ## 機能
