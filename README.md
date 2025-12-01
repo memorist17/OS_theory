@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+# OS
+=======
 # Urban Structure Analysis System
 
 都市構造解析システム - MFA/Lacunarity/Percolation統合解析
@@ -194,3 +197,4 @@ MIT License
 ## 作者
 
 Kotaro Iwata - Iwata Global Research & Engineering
+>>>>>>> feat/full-implementation
